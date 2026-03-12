@@ -1,6 +1,73 @@
 <ion-content [fullscreen]="true">
 
-    <ion-button color="secondary">Teste</ion-button>
-    
-    
+    <ion-menu contentId="main-content">
+        <ion-header>
+            <ion-toolbar>
+                <ion-title>Configurar perfil</ion-title>
+            </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+            <ion-row>
+                <ion-col size="3">
+                    <ion-avatar>
+                        <img src="https://static0.cbrimages.com/wordpress/wp-content/uploads/2021/04/pokemon-rattata.jpg?w=1600&h=900&fit=crop">
+                    </ion-avatar>
+                </ion-col>
+
+                <ion-col size="9">
+                    <ion-item>
+                        <ion-label>
+                            <h1>Rattata</h1>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>
+                            rattatagod@gmail.com
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>
+                            @rattata
+                        </ion-label>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            
+            <ion-row>
+                <ion-col size="12">
+                    <ion-item>
+                        <ion-icon name="airplane-outline" slot="start"></ion-icon>
+                        <ion-label>Alterar senha</ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-icon name="bar-chart-outline" slot="start"></ion-icon>
+                        <ion-label>Alterar tema</ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-icon name="ban-outline" slot="start"></ion-icon>
+                        <ion-label>Desconectar</ion-label>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+        </ion-content>
+    </ion-menu>
+    <div class="ion-page" id="main-content">
+        <ion-header>
+            <ion-toolbar>
+                <ion-buttons slot="start">
+                    <ion-menu-button></ion-menu-button>
+                </ion-buttons>
+                <ion-title>Página Inicial</ion-title>
+            </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+        <ion-row>
+            <ion-col size="12">
+                <ion-datetime></ion-datetime>
+            </ion-col>
+        </ion-row>    
+        </ion-content>
+    </div>
+
+
 </ion-content>
