@@ -2,5 +2,8 @@
     <ng-container *ngFor="let livro of this.livros">
         <h1>{{ livro.titulo }}</h1>
         <h1>{{ livro.sinopse }}</h1>
+        <ng-container *ngFor="let categoria of this.livro.categoria">
+            <marquee>{{ categoria.nome }}</marquee>
+        </ng-container>
     </ng-container>
 </ion-content>
