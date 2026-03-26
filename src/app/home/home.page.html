@@ -1,9 +1,55 @@
 <ion-content [fullscreen]="true">
-    <ng-container *ngFor="let livro of this.livros">
-        <h1>{{ livro.titulo }}</h1>
-        <h1>{{ livro.sinopse }}</h1>
-        <ng-container *ngFor="let categoria of this.livro.categoria">
-            <marquee>{{ categoria.nome }}</marquee>
+    <table border="1">
+        <tr>
+            <th>ISBN</th>
+            <th>Titulo</th>
+            <th>Categoria</th>
+            <th>Ações</th>
+        </tr>
+        <ng-container *ngFor="let livro of this.livros">
+            <tr>
+                <td>{{ livro.isbn }}</td>
+                <td>{{ livro.titulo }}</td>
+                <td>
+                    <ion-card>
+                        <ng-container *ngFor=" let cat of livro.categoria">
+                            <ion-label>{{ cat.nome }}</ion-label> 
+                        </ng-container>
+                    </ion-card>
+                </td>
+                    
+
+                <td>
+                    <ion-button>
+                        <ion-icon name="create-outline"></ion-icon>
+                    </ion-button>
+                    <ion-button>
+                        <ion-icon name="close-circle-outline"></ion-icon>
+                    </ion-button>
+                </td>
+            </tr>
         </ng-container>
-    </ng-container>
+    </table>
+    <table border="1">
+        <tr>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Criado no(a)</th>
+        </tr>
+         <ng-container *ngFor="let prouduto of this.produtos">
+            <tr>
+                <td>{{ produto.nome }}</td>
+                <td>{{ produto.preço }}</td>
+                <td>{{ produto.criado}}</td>
+                <td>
+                    <ion-button>
+                        <ion-icon name="create-outline"></ion-icon>
+                    </ion-button>
+                    <ion-button>
+                        <ion-icon name="close-circle-outline"></ion-icon>
+                    </ion-button>
+                </td>
+            </tr>
+        </ng-container>
+    </table>
 </ion-content>

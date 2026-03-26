@@ -1,0 +1,126 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fundo da página */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  padding: 30px;
+  color: #333;
+}
+
+/* Container */
+.table-container {
+  max-width: 1000px;
+  margin: auto;
+  background: #ffffff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* Tabela */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: linear-gradient(90deg, 50% rgb(53, 105, 28), 50% rgb(25, 103, 92))
+}
+
+/* Cabeçalho */
+thead {
+  background: linear-gradient(90deg, #ff7e5f, #feb47b);
+  color: white;
+}
+
+thead th {
+  padding: 16px;
+  text-align: left;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+}
+
+/* Linhas */
+tbody tr {
+  transition: 0.3s;
+}
+
+tbody tr:nth-child(even) {
+  background: #f8f9ff;
+}
+
+tbody tr:hover {
+  background: #e6f0ff;
+  transform: scale(1.01);
+}
+
+/* Células */
+td {
+  padding: 14px;
+}
+
+/* Categorias base */
+.categoria {
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 3px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+}
+
+/* Cores por categoria */
+.cientifico {
+  background: #3498db;
+}
+
+.romance {
+  background: #e91e63;
+}
+
+.terror {
+  background: #2c3e50;
+}
+
+/* ISBN destaque */
+td:first-child {
+  font-weight: bold;
+  color: #764ba2;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  thead {
+    display: none;
+  }
+
+  table, tbody, tr, td {
+    display: block;
+    width: 100%;
+  }
+
+  tr {
+    margin-bottom: 15px;
+    background: white;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+  }
+
+  td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 15px;
+    font-weight: bold;
+    color: #555;
+  }
+}

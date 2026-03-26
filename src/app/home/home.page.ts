@@ -4,7 +4,7 @@ import { CrudService } from '../services/crud.service';
 import { Storage, getDownloadURL, ref, uploadBytesResumable } from '@angular/fire/storage';
 import { MessageService } from '../services/message.service';
 import { Router } from '@angular/router';
-import { Livro } from './livro.interface';
+import { ILivro, IProduto } from './acervo.interface';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -12,167 +12,266 @@ import { Livro } from './livro.interface';
 })
 export class HomePage {
 
- livros: Livro[] = [
+  produtos: IProduto[] =
+  [{
+    nome: "Mochila",
+    preço: "99,00 R$",
+    criado: "Brasil"
+  },
   {
-    isbn: '124',
-    titulo: 'A Jornada de Pikachu',
-    sinopse: 'Pikachu embarca em uma aventura para encontrar sua verdadeira força enquanto ajuda seus amigos pelo caminho.',
-    data_lancamento: '10/07/2001',
-    paginas: '120',
-    autor: [
-      { nome: 'Akira Tanaka', email: 'akira.tanaka@email.com' }
-    ],
+    nome: "Notebook",
+    preço: "3.500,00 R$",
+    criado: "China"
+  },
+  {
+    nome: "Teclado Mecânico",
+    preço: "250,00 R$",
+    criado: "Estados Unidos"
+  },
+  {
+    nome: "Mouse Gamer",
+    preço: "150,00 R$",
+    criado: "China"
+  },
+  {
+    nome: "Cadeira Gamer",
+    preço: "1.200,00 R$",
+    criado: "Brasil"
+  },
+  {
+    nome: "Monitor 24''",
+    preço: "900,00 R$",
+    criado: "Coreia do Sul"
+  },
+  {
+    nome: "Headset",
+    preço: "300,00 R$",
+    criado: "Japão"
+  },
+  {
+    nome: "Smartphone",
+    preço: "2.000,00 R$",
+    criado: "China"
+  },
+  {
+    nome: "Tablet",
+    preço: "1.500,00 R$",
+    criado: "Estados Unidos"
+  },
+  {
+    nome: "Carregador Portátil",
+    preço: "120,00 R$",
+    criado: "China"
+  },
+  {
+    nome: "Relógio Inteligente",
+    preço: "800,00 R$",
+    criado: "China"
+  },
+  {
+    nome: "Caixa de Som Bluetooth",
+    preço: "220,00 R$",
+    criado: "Brasil"
+  },
+  {
+    nome: "HD Externo",
+    preço: "400,00 R$",
+    criado: "Estados Unidos"
+  },
+  {
+    nome: "Pen Drive 64GB",
+    preço: "60,00 R$",
+    criado: "China"
+  },
+  {
+    nome: "Webcam",
+    preço: "180,00 R$",
+    criado: "Japão"
+  },
+  {
+    nome: "Microfone",
+    preço: "350,00 R$",
+    criado: "Alemanha"
+  },
+  {
+    nome: "Impressora",
+    preço: "700,00 R$",
+    criado: "Japão"
+  },
+  {
+    nome: "Roteador Wi-Fi",
+    preço: "280,00 R$",
+    criado: "China"
+  },
+  {
+    nome: "SSD 1TB",
+    preço: "550,00 R$",
+    criado: "Coreia do Sul"
+  },
+  {
+    nome: "Controle Gamer",
+    preço: "320,00 R$",
+    criado: "Estados Unidos"
+  }];
+
+  livros: ILivro[] = 
+    [{
+    isbn: "123", 
+    titulo: "Uma breve história do tempo",
     categoria: [
-      { nome: 'Aventura' }
-    ],
-    editora: [
-      { nome: 'Tokyo Books', email: 'contato@tokyobooks.com' }
+      {nome: "científico"},
+    {nome: "romance"},
+      {nome: "terror"}
+    ] },
+
+    {
+    isbn: "124",
+    titulo: "O Enigma das Estrelas",
+    categoria: [
+      { nome: "científico" },
+      { nome: "romance" }
     ]
   },
   {
-    isbn: '125',
-    titulo: 'Charizard: Fogo Interior',
-    sinopse: 'Uma história sobre superação e controle emocional através das batalhas de Charizard.',
-    data_lancamento: '22/03/2005',
-    paginas: '98',
-    autor: [
-      { nome: 'Kenji Sato', email: 'kenji@email.com' }
-    ],
+    isbn: "125",
+    titulo: "Sombras do Infinito",
     categoria: [
-      { nome: 'Drama' }
-    ],
-    editora: [
-      { nome: 'Flame Press', email: 'flame@press.com' }
+      { nome: "terror" },
+      { nome: "científico" }
     ]
   },
   {
-    isbn: '126',
-    titulo: 'Bulbasaur e o Jardim Secreto',
-    sinopse: 'Bulbasaur descobre um jardim mágico cheio de mistérios e criaturas raras.',
-    data_lancamento: '14/09/2003',
-    paginas: '76',
-    autor: [
-      { nome: 'Mika Yamamoto', email: 'mika@email.com' }
-    ],
+    isbn: "126",
+    titulo: "Amor em Órbita",
     categoria: [
-      { nome: 'Fantasia' }
-    ],
-    editora: [
-      { nome: 'Green Leaf', email: 'green@leaf.com' }
+      { nome: "romance" },
+      { nome: "científico" }
     ]
   },
   {
-    isbn: '127',
-    titulo: 'Squirtle Squad',
-    sinopse: 'As aventuras da equipe Squirtle enfrentando desafios e protegendo sua cidade.',
-    data_lancamento: '05/01/2000',
-    paginas: '88',
-    autor: [
-      { nome: 'Hiroshi Kato', email: 'hiroshi@email.com' }
-    ],
+    isbn: "127",
+    titulo: "O Laboratório do Medo",
     categoria: [
-      { nome: 'Ação' }
-    ],
-    editora: [
-      { nome: 'Blue Wave', email: 'blue@wave.com' }
+      { nome: "terror" }
     ]
   },
   {
-    isbn: '128',
-    titulo: 'Eevee: Possibilidades Infinitas',
-    sinopse: 'Eevee descobre seus múltiplos caminhos e as escolhas que definem seu futuro.',
-    data_lancamento: '19/11/2008',
-    paginas: '110',
-    autor: [
-      { nome: 'Naomi Suzuki', email: 'naomi@email.com' }
-    ],
+    isbn: "128",
+    titulo: "Entre Átomos e Emoções",
     categoria: [
-      { nome: 'Ficção' }
-    ],
-    editora: [
-      { nome: 'Evolution Books', email: 'evo@books.com' }
+      { nome: "científico" },
+      { nome: "romance" }
     ]
   },
   {
-    isbn: '129',
-    titulo: 'Gengar nas Sombras',
-    sinopse: 'Mistérios e sustos acompanham Gengar em uma cidade cheia de segredos.',
-    data_lancamento: '31/10/2006',
-    paginas: '95',
-    autor: [
-      { nome: 'Ryu Takeda', email: 'ryu@email.com' }
-    ],
+    isbn: "129",
+    titulo: "A Noite dos Experimentos",
     categoria: [
-      { nome: 'Terror' }
-    ],
-    editora: [
-      { nome: 'Dark Moon', email: 'dark@moon.com' }
+      { nome: "terror" },
+      { nome: "científico" }
     ]
   },
   {
-    isbn: '130',
-    titulo: 'Snorlax e o Dia Perfeito',
-    sinopse: 'Uma narrativa leve e divertida sobre o dia ideal de Snorlax.',
-    data_lancamento: '08/08/2002',
-    paginas: '60',
-    autor: [
-      { nome: 'Taro Yamada', email: 'taro@email.com' }
-    ],
+    isbn: "130",
+    titulo: "Corações em Colisão",
     categoria: [
-      { nome: 'Comédia' }
-    ],
-    editora: [
-      { nome: 'Lazy House', email: 'lazy@house.com' }
+      { nome: "romance" }
     ]
   },
   {
-    isbn: '131',
-    titulo: 'Lucario: Aura e Destino',
-    sinopse: 'Lucario aprende a dominar sua aura enquanto enfrenta grandes desafios.',
-    data_lancamento: '17/04/2010',
-    paginas: '140',
-    autor: [
-      { nome: 'Daichi Morita', email: 'daichi@email.com' }
-    ],
+    isbn: "131",
+    titulo: "O Código do Horror",
     categoria: [
-      { nome: 'Aventura' }
-    ],
-    editora: [
-      { nome: 'Aura Press', email: 'aura@press.com' }
+      { nome: "terror" }
     ]
   },
   {
-    isbn: '132',
-    titulo: 'Jigglypuff: Canções e Confusões',
-    sinopse: 'As apresentações musicais de Jigglypuff sempre terminam de forma inesperada.',
-    data_lancamento: '12/06/2004',
-    paginas: '70',
-    autor: [
-      { nome: 'Emi Kobayashi', email: 'emi@email.com' }
-    ],
+    isbn: "132",
+    titulo: "Universos Paralelos do Amor",
     categoria: [
-      { nome: 'Comédia' }
-    ],
-    editora: [
-      { nome: 'Melody Books', email: 'melody@books.com' }
+      { nome: "científico" },
+      { nome: "romance" }
     ]
   },
   {
-    isbn: '133',
-    titulo: 'Dragonite: O Guardião dos Céus',
-    sinopse: 'Dragonite protege os mares e céus enquanto enfrenta ameaças perigosas.',
-    data_lancamento: '25/12/2012',
-    paginas: '150',
-    autor: [
-      { nome: 'Kazuo Ishida', email: 'kazuo@email.com' }
-    ],
+    isbn: "133",
+    titulo: "Experimento 666",
     categoria: [
-      { nome: 'Ação' }
-    ],
-    editora: [
-      { nome: 'Sky Legends', email: 'sky@legends.com' }
+      { nome: "terror" }
+    ]
+  },
+  {
+    isbn: "134",
+    titulo: "A Física do Coração",
+    categoria: [
+      { nome: "científico" },
+      { nome: "romance" }
+    ]
+  },
+  {
+    isbn: "135",
+    titulo: "Pesadelos Quânticos",
+    categoria: [
+      { nome: "terror" },
+      { nome: "científico" }
+    ]
+  },
+  {
+    isbn: "136",
+    titulo: "A Última Equação do Amor",
+    categoria: [
+      { nome: "romance" }
+    ]
+  },
+  {
+    isbn: "137",
+    titulo: "O Cientista das Sombras",
+    categoria: [
+      { nome: "terror" },
+      { nome: "científico" }
+    ]
+  },
+  {
+    isbn: "138",
+    titulo: "Ecos do Universo",
+    categoria: [
+      { nome: "científico" }
+    ]
+  },
+  {
+    isbn: "139",
+    titulo: "Amor Além do Tempo",
+    categoria: [
+      { nome: "romance" },
+      { nome: "científico" }
+    ]
+  },
+  {
+    isbn: "140",
+    titulo: "A Casa dos Experimentos",
+    categoria: [
+      { nome: "terror" }
+    ]
+  },
+  {
+    isbn: "141",
+    titulo: "Segredos do Cosmos Sombrio",
+    categoria: [
+      { nome: "científico" },
+      { nome: "terror" }
+    ]
+  },
+  {
+    isbn: "142",
+    titulo: "Entre o Medo e o Amor",
+    categoria: [
+      { nome: "romance" },
+      { nome: "terror" }
     ]
   }
-];
+    ]
+  
+  
 
 }
+
